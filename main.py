@@ -53,8 +53,13 @@ daily_changes = []
 for i in range(1,len(close)):
   daily_changes.append(close[i] / close[i-1] -1)
 
-print(daily_changes)
+#print(daily_changes)
 
+weights = close.copy()
+weights.loc[:] = 0 #.loc[:] = 0 is an indicator "where" something is will be equal to 0
 
+weights.loc[close > ma] = 1
+print(weights)
+#where close is greater than the moving average, set value = 1, others will stay 0
 
 performance = [100]
